@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "stack2_23081010038_safirarusyda": "cpp",
+        "xstring": "cpp"
     }
 }
