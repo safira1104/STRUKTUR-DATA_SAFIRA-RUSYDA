@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <conio.h>
 #include <stdlib.h>
+
 /* Tambahkan Fungsionalitas program :
 
 Tambahkan data di akhir linked list
@@ -78,11 +79,6 @@ int main()
          jumlahData(&head);
       else if (pilih == 10)
          totalData(&head);
-      
-      
-      
-
-  
 
   } while (pilih != 0);
   

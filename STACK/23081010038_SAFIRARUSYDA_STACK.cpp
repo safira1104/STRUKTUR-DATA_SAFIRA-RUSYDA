@@ -36,8 +36,8 @@ void createStack(){
 void push();
 void pop();  
 void stackTop();
-void emptyStack(); 
-void fullStack(); 
+bool emptyStack(); 
+bool fullStack(); 
 void stackCount (); 
 void destroyStack();
 void displayStack();
@@ -58,12 +58,9 @@ int main()
      cout<<"1. tambah data ke stack (Push)"<<endl;
      cout<<"2. Hapus data dari stack (Pop)"<<endl;
      cout<<"3. Stack Top"<<endl;
-     cout<<"4. Empty Stack"<<endl;
-     
-     cout<<"5. Full Stack"<<endl;
-     cout<<"6. Stack Count"<<endl;
-     cout<<"7. Destroy Stack"<<endl;
-     cout<<"8. Display Stack"<<endl;
+     cout<<"4. Stack Count"<<endl;
+     cout<<"5. Destroy Stack"<<endl;
+     cout<<"6. Display Stack"<<endl;
 
      cout<<"MASUKKAN PILIHAN (tekan 0 untuk keluar) : ";
      cin>>pilih;
@@ -75,15 +72,11 @@ int main()
 			pop();
       else if (pilih == 3)
          stackTop(); 
-     else if (pilih == 4)
-         emptyStack();
-      else if (pilih == 5)
-         fullStack();
-      else if ( pilih == 6)
+      else if ( pilih == 4)
          stackCount();
-      else if (pilih == 7)
+      else if (pilih == 5)
          destroyStack();
-      else if (pilih == 8)
+      else if (pilih == 6)
          displayStack();
 
   } while (pilih != 0);
@@ -94,6 +87,13 @@ int main()
 //========================================================
 
 void push(){
+
+   if (fullStack()) {
+    cout << "Stack penuh! Tidak bisa menambahkan data." << endl;
+    cin.get();
+    return;
+   }
+
   int bil;
   node *pNew = new node;
 
@@ -122,7 +122,7 @@ void pop(){
    node *dltPtr;
    int dataOut;
 
-   if (stack.count == 0)
+   if (emptyStack())
    {
       cout<<"stack kosong"<<endl;
       cin.get();  
@@ -135,13 +135,12 @@ void pop(){
       cout<<"data berhasil dihapus"<<endl;
       cin.get();
    }
-   
 }
 //========================================================
 
 void stackTop(){
     int dataOut;
-    if (stack.count == 0)
+    if (emptyStack())
     {
         cout<<"stack kosong"<<endl;
         cin.get();
@@ -156,31 +155,21 @@ void stackTop(){
 //========================================================
 //empty stack
 
-void emptyStack(){
-    if (stack.count != 0)
-    {
-        cout<<"stack tidak kosong. jumlah data dalam stack : "<<stack.count<<endl;
-        cin.get();
-    }else{
-        cout<<"stack kosong";
-        cin.get();
-    }
-    
+bool emptyStack(){
+    return stack.count == 0;
+ 
 }
 
 //========================================================
 //full stack
 
-void fullStack(){
-    node *pNew = new(nothrow) node;
+bool fullStack(){
+     node *pNew = new(nothrow) node;
     if (pNew == NULL) {
-        cout << "Stack penuh (memori tidak cukup untuk menambahkan elemen baru)." << endl;
-    } else {
-        cout << "Masih ada cukup memori, stack belum penuh." << endl;
-        delete pNew;
+        return true;
     }
-    cin.get();
-
+    delete pNew;
+    return false;
 }
 
 //========================================================
@@ -208,7 +197,7 @@ void destroyStack(){
 //========================================================
 //jumlah data 
 void displayStack(){
-  if (stack.count == 0) {
+  if (emptyStack()) {
         cout << "Stack kosong" << endl;
     } else {
         node *pWalker = stack.top;  
