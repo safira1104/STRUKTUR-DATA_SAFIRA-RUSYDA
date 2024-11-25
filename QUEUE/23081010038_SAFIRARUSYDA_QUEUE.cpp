@@ -2,16 +2,7 @@
 
 using namespace std;
 
-/* Tambahkan Fungsionalitas program :
 
-Push queue 
-Pop Stack
-Stack Top
-Empty Stack
-Full Stack
-Stack Count
-Destroy Stack
-*/
 //========================================================
 
 
